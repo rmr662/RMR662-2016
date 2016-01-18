@@ -18,6 +18,8 @@ public class Robot extends SampleRobot {
 
     public Robot() {
         parts = new Component[NUM_PARTS];
+        parts[0] = new Drive();
+        stick = new Joystick(0);
     }
     
     public void robotInit() {

@@ -31,7 +31,6 @@ public class Robot extends SampleRobot {
     }
 
     public void operatorControl() {
-        myRobot.setSafetyEnabled(true);
         while (isOperatorControl() && isEnabled()) {
             for(int i = 0; i < parts.length; i++){
             	parts[i].update();

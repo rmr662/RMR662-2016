@@ -8,6 +8,9 @@ public class Drive extends Component{
 	public Drive(){
 		left = new DualTalon(3,6);
 		right = new DualTalon(4,5);
+		
+		left.setMultiplier(.2);
+		right.setMultiplier(.2);
 				
 		driver = new RobotDrive(left,right);
 	}
@@ -17,7 +20,7 @@ public class Drive extends Component{
 	}
 	
 	public void update(){
-		driver.arcadeDrive(Robot.stick.getRawAxis(1), Robot.stick.getRawAxis(4));
+		driver.arcadeDrive(Robot.stick.getRawAxis(XboxMap.LEFT_JOY_VERT), Robot.stick.getRawAxis(XboxMap.RIGHT_JOY_HORIZ));
 	
 	}
 }

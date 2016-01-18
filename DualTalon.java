@@ -4,17 +4,17 @@ import edu.wpi.first.wpilibj.*;
 
 public class DualTalon implements SpeedController {
 	
-	TalonSRX left, right;
+	CANTalon left, right;
 	
 	double currentSpeed;
 	double leftSpeedMultiplier;
 	double rightSpeedMultiplier;
 	
 	public DualTalon(int leftChannel, int rightChannel) {
-		this(new TalonSRX(leftChannel), new TalonSRX(rightChannel));
+		this(new CANTalon(leftChannel), new CANTalon(rightChannel));
 	}
 	
-	public DualTalon(TalonSRX left, TalonSRX right) {
+	public DualTalon(CANTalon left, CANTalon right) {
 		this.left = left;
 		this.right = right;
 		

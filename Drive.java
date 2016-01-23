@@ -9,10 +9,14 @@ public class Drive extends Component{
 	final static double RIGHT_MULTIPLIER = 0.3;
 	final static double LEFT_DEADZONE = 0.1;
 	final static double RIGHT_DEADZONE = 0.1;
+	final static int FRONT_LEFT_MOTOR = 3;
+	final static int REAR_LEFT_MOTOR = 6;
+	final static int FRONT_RIGHT_MOTOR = 4;
+	final static int REAR_RIGHT_MOTOR = 5;
 	
 	public Drive(){
-		left = new DualTalon(3,6);
-		right = new DualTalon(4,5);
+		left = new DualTalon(FRONT_LEFT_MOTOR,REAR_LEFT_MOTOR);
+		right = new DualTalon(FRONT_RIGHT_MOTOR,REAR_RIGHT_MOTOR);
 		
 		left.setMultiplier(LEFT_MULTIPLIER);
 		right.setMultiplier(RIGHT_MULTIPLIER);

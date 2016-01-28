@@ -1,10 +1,9 @@
 package org.usfirst.frc.team662.robot;
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
 public class Drive extends Component{
 	RobotDrive driver; 
 	DualTalon left;
-	DualTalon right; 
+	DualTalon right;
 	final static double LEFT_MULTIPLIER = -0.3;
 	final static double RIGHT_MULTIPLIER = 0.3;
 	final static double LEFT_DEADZONE = 0.1;
@@ -13,7 +12,7 @@ public class Drive extends Component{
 	final static int REAR_LEFT_MOTOR = 6;
 	final static int FRONT_RIGHT_MOTOR = 4;
 	final static int REAR_RIGHT_MOTOR = 5;
-	
+
 	public Drive(){
 		left = new DualTalon(FRONT_LEFT_MOTOR,REAR_LEFT_MOTOR);
 		right = new DualTalon(FRONT_RIGHT_MOTOR,REAR_RIGHT_MOTOR);
@@ -22,6 +21,8 @@ public class Drive extends Component{
 		right.setMultiplier(RIGHT_MULTIPLIER);
 				
 		driver = new RobotDrive(left,right);
+		
+		
 	}
 	
 	public void autoUpdate(){
@@ -89,4 +90,5 @@ public class Drive extends Component{
 	       }
 		return outputPower;
 	}
+	
 }

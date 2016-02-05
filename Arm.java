@@ -27,9 +27,9 @@ class Arm extends Component{
 
 	}
 	public void update(){
-		boolean Up = Robot.stick.getRawButton(XboxMap.Y);
-		boolean Half = Robot.stick.getRawButton(XboxMap.B) || Robot.stick.getRawButton(XboxMap.X);
-		boolean Down = Robot.stick.getRawButton(XboxMap.A);
+		boolean Up = Robot.manStick.getRawButton(XboxMap.Y);
+		boolean Half = Robot.manStick.getRawButton(XboxMap.X);
+		boolean Down = Robot.manStick.getRawButton(XboxMap.A);
 			
 		if (Up == true && isFirstTime == true) {
 			setSolenoids(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward);

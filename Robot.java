@@ -12,16 +12,19 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends SampleRobot {
     RobotDrive myRobot;
     public static Joystick stick;
+    public static Joystick manStick;
 
     Component[] parts;
-    static final int NUM_PARTS = 3;
+    static final int NUM_PARTS = 4;
 
     public Robot() {
         parts = new Component[NUM_PARTS];
         parts[0] = new Drive();
         parts[1] = new Shifter();
         parts[2] = new Arm();
+        parts[3] = new BackArm();
         stick = new Joystick(0);
+        manStick = new Joystick(1);
     }
     
     public void robotInit() {

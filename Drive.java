@@ -1,19 +1,18 @@
 package org.usfirst.frc.team662.robot;
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
 public class Drive extends Component{
 	RobotDrive driver; 
 	DualTalon left;
-	DualTalon right; 
-	final static double LEFT_MULTIPLIER = -0.3;
-	final static double RIGHT_MULTIPLIER = 0.3;
-	final static double LEFT_DEADZONE = 0.1;
-	final static double RIGHT_DEADZONE = 0.1;
-	final static int FRONT_LEFT_MOTOR = 3;
+	DualTalon right;
+	final static double LEFT_MULTIPLIER = 0.7;
+	final static double RIGHT_MULTIPLIER = -0.7;
+	final static double LEFT_DEADZONE = 0.15;
+	final static double RIGHT_DEADZONE = 0.15;
+	final static int FRONT_LEFT_MOTOR = 4;
 	final static int REAR_LEFT_MOTOR = 6;
-	final static int FRONT_RIGHT_MOTOR = 4;
+	final static int FRONT_RIGHT_MOTOR = 3;
 	final static int REAR_RIGHT_MOTOR = 5;
-	
+
 	public Drive(){
 		left = new DualTalon(FRONT_LEFT_MOTOR,REAR_LEFT_MOTOR);
 		right = new DualTalon(FRONT_RIGHT_MOTOR,REAR_RIGHT_MOTOR);
@@ -21,7 +20,9 @@ public class Drive extends Component{
 		left.setMultiplier(LEFT_MULTIPLIER);
 		right.setMultiplier(RIGHT_MULTIPLIER);
 				
-		driver = new RobotDrive(left,right);
+		//driver = new RobotDrive(left,right);
+		
+		
 	}
 	
 	public void autoUpdate(){
@@ -38,6 +39,14 @@ public class Drive extends Component{
        double highInput = 1;
        double leftInput = -Robot.stick.getRawAxis(XboxMap.LEFT_JOY_VERT);
        double rightInput = Robot.stick.getRawAxis(XboxMap.RIGHT_JOY_HORIZ);
+       
+       if (rightInput < 0) {
+    	   rightInput *= -rightInput;
+       }
+       else {
+    	   rightInput *= rightInput;
+       }
+       
        
        //set motor power variables to left stick value
        if(Math.abs(leftInput) > LEFT_DEADZONE){
@@ -89,4 +98,5 @@ public class Drive extends Component{
 	       }
 		return outputPower;
 	}
+	
 }

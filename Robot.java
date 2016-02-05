@@ -15,14 +15,15 @@ public class Robot extends SampleRobot {
     public static Joystick manStick;
 
     Component[] parts;
-    static final int NUM_PARTS = 4;
+    static final int NUM_PARTS = 5;
 
     public Robot() {
         parts = new Component[NUM_PARTS];
-        parts[0] = new Drive();
-        parts[1] = new Shifter();
-        parts[2] = new Arm();
-        parts[3] = new BackArm();
+        parts[0] = new Compress();
+        parts[1] = new Drive();
+        parts[2] = new Shifter();
+        parts[3] = new Arm();
+        parts[4] = new BackArm();
         stick = new Joystick(0);
         manStick = new Joystick(1);
     }

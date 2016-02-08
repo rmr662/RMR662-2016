@@ -11,6 +11,7 @@ public class Shifter extends Component{
 	Solenoid lGearShifter;
 	Solenoid rGearShifter;
 	
+	Joystick stick;
 	
 	public Shifter (){
 		
@@ -20,10 +21,19 @@ public class Shifter extends Component{
 		
 		
 	}
+
+	public int getControllerIndex() {
+		return XboxMap.DRIVE_CONTROLLER;
+	}
+
+	public void setController(Joystick j) {
+		stick = j;
+	}
+
 	public void update(){
 		
-		 boolean rPress = Robot.stick.getRawButton(XboxMap.RB);
-		 boolean lPress = Robot.stick.getRawButton(XboxMap.LB);
+		 boolean rPress = stick.getRawButton(XboxMap.RB);
+		 boolean lPress = stick.getRawButton(XboxMap.LB);
 		 
 		 
 		 if (rPress == true){

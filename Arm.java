@@ -18,7 +18,8 @@ class Arm extends Component{
 	DoubleSolenoid rightTop;
 	DoubleSolenoid leftBottom;
 	DoubleSolenoid leftTop;
-	
+	Joystick stick;	
+
 	public Arm(){
 		rightBottom= new DoubleSolenoid(1, RIGHT_PORT_TWO, RIGHT_PORT_THREE );
 		leftBottom= new DoubleSolenoid(1, LEFT_PORT_TWO, LEFT_PORT_THREE);
@@ -26,10 +27,19 @@ class Arm extends Component{
 		leftTop= new DoubleSolenoid(1, LEFT_PORT_ONE, LEFT_PORT_FOUR);
 
 	}
+
+	public int getControllerIndex() {
+		return XboxMap.MANIP_CONTROLLER;
+	}
+
+	public void setController(Joystick j) {
+		stick = j;
+	}
+
 	public void update(){
-		boolean Up = Robot.stick.getRawButton(XboxMap.Y);
-		boolean Half = Robot.stick.getRawButton(XboxMap.B) || Robot.stick.getRawButton(XboxMap.X);
-		boolean Down = Robot.stick.getRawButton(XboxMap.A);
+		boolean Up = stick.getRawButton(XboxMap.Y);
+		boolean Half = stick.getRawButton(XboxMap.B) || stick.getRawButton(XboxMap.X);
+		boolean Down = stick.getRawButton(XboxMap.A);
 			
 		if (Up == true && isFirstTime == true) {
 			setSolenoids(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward);

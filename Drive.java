@@ -13,6 +13,8 @@ public class Drive extends Component{
 	final static int FRONT_RIGHT_MOTOR = 3;
 	final static int REAR_RIGHT_MOTOR = 5;
 
+	Joystick stick;
+
 	public Drive(){
 		left = new DualTalon(FRONT_LEFT_MOTOR,REAR_LEFT_MOTOR);
 		right = new DualTalon(FRONT_RIGHT_MOTOR,REAR_RIGHT_MOTOR);
@@ -23,6 +25,14 @@ public class Drive extends Component{
 		//driver = new RobotDrive(left,right);
 		
 		
+	}
+
+	public int getControllerIndex() {
+		return XboxMap.DRIVE_CONTROLLER;
+	}
+
+	public void setController(Joystick j) {
+		stick = j;	
 	}
 	
 	public void autoUpdate(){
@@ -37,8 +47,8 @@ public class Drive extends Component{
        double rightMotorPower = 0;
        double leftMotorPower = 0;
        double highInput = 1;
-       double leftInput = -Robot.stick.getRawAxis(XboxMap.LEFT_JOY_VERT);
-       double rightInput = Robot.stick.getRawAxis(XboxMap.RIGHT_JOY_HORIZ);
+       double leftInput = -stick.getRawAxis(XboxMap.LEFT_JOY_VERT);
+       double rightInput = stick.getRawAxis(XboxMap.RIGHT_JOY_HORIZ);
        
        if (rightInput < 0) {
     	   rightInput *= -rightInput;

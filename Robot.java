@@ -10,33 +10,39 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends SampleRobot {
-    RobotDrive myRobot;
-    public static Joystick stick;
 
+    Joystick [] sticks;
+
+    ComponentLoader cl;
     Component[] parts;
     static final int NUM_PARTS = 3;
 
     public Robot() {
-        parts = new Component[NUM_PARTS];
-        parts[0] = new Drive();
-        parts[1] = new Shifter();
-        parts[2] = new Arm();
+	sticks = new Joystick[2];
+
+	sticks[0] = new Joystick(XboxMap.DRIVE_CONTROLLER);
+	sticks[1] = new Joystick(XboxMap.MANIP_CONTROLLER);
+
+        cl = new ComponentLoader();
         stick = new Joystick(0);
     }
     
     public void robotInit() {
-        
+        parts = cl.loadComponents();
+	for (int i = 0; parts[i] != null && i < parts.length; i++) {
+	   parts[i].setController(sticks[parts[i].getControllerIndex()]);
+	}   
     }
 
     public void autonomous() {
-    	for(int i = 0; i < parts.length; i++){
+    	for(int i = 0; parts[i] != null && i < parts.length; i++){
     		parts[i].autoUpdate();
     	}
     }
 
     public void operatorControl() {
         while (isOperatorControl() && isEnabled()) {
-            for(int i = 0; i < parts.length; i++){
+            for(int i = 0; parts[i] != null && i < parts.length; i++){
             	parts[i].update();
             }
         }

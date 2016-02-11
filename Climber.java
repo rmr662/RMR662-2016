@@ -3,7 +3,7 @@ package org.usfirst.frc.team662.robot;
 import edu.wpi.first.wpilibj.Relay;
 
 
-public class Climber {
+public class Climber extends Component{
 
 	Relay climbMotor;
 	Relay topMotor;
@@ -47,5 +47,8 @@ public class Climber {
 	public void setMotors (Relay.Value motor){
 		climbMotor.set(motor);
 		topMotor.set(motor);
+	}
+	public void autoUpdate(){
+		
 	}
 }

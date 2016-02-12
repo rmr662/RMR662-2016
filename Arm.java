@@ -1,67 +1,54 @@
-
-
 package org.usfirst.frc.team662.robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-class Arm extends Component{
-	final static int RIGHT_PORT_ONE = 1;
-	final static int RIGHT_PORT_TWO = 2;
-	final static int RIGHT_PORT_THREE = 3;
-	final static int RIGHT_PORT_FOUR = 4;
-	final static int LEFT_PORT_ONE = 5;
-	final static int LEFT_PORT_TWO = 6;
-	final static int LEFT_PORT_THREE = 7;
-	final static int LEFT_PORT_FOUR = 0;
-	boolean isFirstTime = true;	
-	DoubleSolenoid rightBottom;
-	DoubleSolenoid rightTop;
-	DoubleSolenoid leftBottom;
-	DoubleSolenoid leftTop;
-	
-	public Arm(){
-		rightBottom= new DoubleSolenoid(1, RIGHT_PORT_TWO, RIGHT_PORT_THREE );
-		leftBottom= new DoubleSolenoid(1, LEFT_PORT_TWO, LEFT_PORT_THREE);
-		rightTop= new DoubleSolenoid(1, RIGHT_PORT_ONE, RIGHT_PORT_FOUR );
-		leftTop= new DoubleSolenoid(1, LEFT_PORT_ONE, LEFT_PORT_FOUR);
+class Arm extends Component {
+	final static int TOP_PORT_ONE = 1;
+	final static int BOTTOM_PORT_ONE = 2;
+	final static int BOTTOM_PORT_TWO = 3;
+	final static int TOP_PORT_TWO = 4;
+	boolean isFirstTime = true;
+	DoubleSolenoid top, bottom;
+
+	public Arm() {
+
+		bottom = new DoubleSolenoid(1, BOTTOM_PORT_ONE, BOTTOM_PORT_TWO);
+		top = new DoubleSolenoid(1, TOP_PORT_ONE, TOP_PORT_TWO);
 
 	}
-	public void update(){
+
+	public void update() {
 		boolean Up = Robot.manStick.getRawButton(XboxMap.Y);
 		boolean Half = Robot.manStick.getRawButton(XboxMap.X);
 		boolean Down = Robot.manStick.getRawButton(XboxMap.A);
-			
+
 		if (Up == true && isFirstTime == true) {
 			setSolenoids(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward);
-			
+
 		}
-		
-		else if(Half == true && isFirstTime == true){
+
+		else if (Half == true && isFirstTime == true) {
 			setSolenoids(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kReverse);
 		}
-		
-		else if (Down == true && isFirstTime == true){
+
+		else if (Down == true && isFirstTime == true) {
 			setSolenoids(DoubleSolenoid.Value.kReverse, DoubleSolenoid.Value.kReverse);
 		}
-		
-		else if(!Down && !Up && !Half && !isFirstTime){
+
+		else if (!Down && !Up && !Half && !isFirstTime) {
 			isFirstTime = true;
 		}
-			
 
-		
-		
-		
 	}
-	private void setSolenoids(DoubleSolenoid.Value bottom, DoubleSolenoid.Value top){
-		rightBottom.set(bottom);
-		leftBottom.set(bottom);
-		rightTop.set(top);
-	    leftTop.set(top);
-	    isFirstTime = false;
+
+	private void setSolenoids(DoubleSolenoid.Value bottomValue, DoubleSolenoid.Value topValue) {
+		bottom.set(bottomValue);
+		top.set(topValue);
+		isFirstTime = false;
 	}
-	public void autoUpdate(){
-		
+
+	public void autoUpdate() {
+
 	}
 
 }

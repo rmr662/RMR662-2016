@@ -3,6 +3,7 @@
 package org.usfirst.frc.team662.robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Joystick;
 
 class Arm extends Component{
 	final static int RIGHT_PORT_ONE = 1;

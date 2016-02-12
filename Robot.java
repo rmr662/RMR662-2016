@@ -24,7 +24,6 @@ public class Robot extends SampleRobot {
 	sticks[1] = new Joystick(XboxMap.MANIP_CONTROLLER);
 
         cl = new ComponentLoader();
-        stick = new Joystick(0);
     }
     
     public void robotInit() {

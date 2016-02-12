@@ -1,4 +1,5 @@
 package org.usfirst.frc.team662.robot;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 public class Drive extends Component{
 	RobotDrive driver; 

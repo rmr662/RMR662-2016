@@ -18,32 +18,28 @@ public class BallGrabber extends Component{
 		buttonOn = new DigitalInput(SWITCHPORT);
 	}
 	public void update(){
-		boolean buttonPressed;
-		buttonPressed = Robot.manipulator.getRawButton(XboxMap.LB);
-		if(buttonOn.get() && limitHit == false){
+		boolean leftButton;
+		boolean rightButton;
+		leftButton = Robot.manipulator.getRawAxis(XboxMap.LEFT_TRIGGER) > .5;
+		rightButton = Robot.manipulator.getRawAxis(XboxMap.RIGHT_TRIGGER) > .5;
+		
+		/*if(buttonOn.get() && limitHit == false){
 			grabbingTalon.set(0);
 			limitHit = true;
 		}
 		if(!buttonOn.get()){
 			limitHit = false;
-		}
+		}*/
 	
-		if(buttonPressed && !runBefore){	
-			if(clockwise == false){
-				clockwise = true;
-				grabbingTalon.set(SPEED_FORWARD);
-			}
-			if(clockwise == true){
-				clockwise = false;
-				grabbingTalon.set(SPEED_BACKWARD);
-			}
+		if(leftButton && !runBefore){
 			runBefore = true;
-			
+			grabbingTalon.set(SPEED_FORWARD);
 		}
-		else{
-			if(buttonPressed){
-				runBefore = false;
-			}
+		else if(rightButton && runBefore){
+			runBefore = true;
+			grabbingTalon.set(SPEED_BACKWARD);
+		} else if(runBefore && (!leftButton || !rightButton)){
+			runBefore = false;
 		}
 			
 	}

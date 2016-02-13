@@ -1,11 +1,12 @@
 package org.usfirst.frc.team662.robot;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Talon;
 
 public class BallGrabber extends Component{
-	CANTalon grabbingTalon;
-	final static int MOTORPORT = 1;
-	final static int SWITCHPORT = 1;
+	Talon grabbingTalon;
+	final static int MOTORPORT = 0;
+	final static int SWITCHPORT = 0;
 	DigitalInput buttonOn;
 	final static double SPEED_FORWARD = 1;
 	final static double SPEED_BACKWARD = -1;
@@ -13,7 +14,7 @@ public class BallGrabber extends Component{
 	boolean runBefore = false;
 	
 	public BallGrabber(){
-		grabbingTalon = new CANTalon(MOTORPORT);
+		grabbingTalon = new Talon(MOTORPORT);
 		buttonOn = new DigitalInput(SWITCHPORT);
 	}
 	public void update(){
@@ -43,6 +44,11 @@ public class BallGrabber extends Component{
 	}
 	public void autoUpdate(){
 		
+	}
+	public void disable(){
+		grabbingTalon.set(0);
+		clockwise = false;
+		runBefore = false;
 	}
 	
 }

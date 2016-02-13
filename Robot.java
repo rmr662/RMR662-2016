@@ -2,6 +2,7 @@
 package org.usfirst.frc.team662.robot;
 
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Joystick;
@@ -10,9 +11,11 @@ public class Robot extends SampleRobot {
     RobotDrive myRobot;
     public static Joystick stick;
     public static Joystick manipulator;
+    DigitalInput auto;
 
     Component[] parts;
     static final int NUM_PARTS = 6;
+    static final int AUTO_PORT = 1;
 
     public Robot() {
         parts = new Component[NUM_PARTS];
@@ -24,6 +27,7 @@ public class Robot extends SampleRobot {
         parts[5] = new BallGrabber();
         stick = new Joystick(0);
         manipulator = new Joystick(1);
+        auto = new DigitalInput(AUTO_PORT);
     }
     
     public void robotInit() {
@@ -31,8 +35,10 @@ public class Robot extends SampleRobot {
     }
 
     public void autonomous() {
-    	for(int i = 0; i < parts.length; i++){
-    		parts[i].autoUpdate();
+    	if(auto.get()){
+	    	for(int i = 0; i < parts.length; i++){
+	    		parts[i].autoUpdate();
+	    	}
     	}
     }
 

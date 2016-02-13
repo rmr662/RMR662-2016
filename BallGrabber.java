@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Talon;
 public class BallGrabber extends Component{
 	Talon grabbingTalon;
 	final static int MOTORPORT = 0;
-	final static int SWITCHPORT = 0;
+	final static int SWITCHPORT = 2;
 	DigitalInput buttonOn;
 	final static double SPEED_FORWARD = 1;
 	final static double SPEED_BACKWARD = -1;

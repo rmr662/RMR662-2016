@@ -12,7 +12,7 @@ public class Robot extends SampleRobot {
     public static Joystick manipulator;
 
     Component[] parts;
-    static final int NUM_PARTS = 5;
+    static final int NUM_PARTS = 6;
 
     public Robot() {
         parts = new Component[NUM_PARTS];
@@ -21,6 +21,7 @@ public class Robot extends SampleRobot {
         parts[2] = new Shifter();
         parts[3] = new Arm();
         parts[4] = new BackArm();
+        parts[5] = new BallGrabber();
         stick = new Joystick(0);
         manipulator = new Joystick(1);
     }

@@ -14,7 +14,7 @@ public class BackArm extends Component{
 		backArm = new Solenoid(SOL_PORT);
 	}
 	public void update(){
-		boolean b = Robot.manStick.getRawButton(XboxMap.B);
+		boolean b = Robot.manipulator.getRawButton(XboxMap.B);
 		if(!clicked && b){
 			backArm.set(!backArm.get());
 			clicked = true;

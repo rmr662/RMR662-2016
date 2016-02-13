@@ -1,9 +1,13 @@
 package org.usfirst.frc.team662.robot;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Timer;
 public class Drive extends Component{
 	RobotDrive driver; 
 	DualTalon left;
 	DualTalon right;
+	Timer clock1;
+	boolean timerValue = false;
+	
 	final static double LEFT_MULTIPLIER = 0.7;
 	final static double RIGHT_MULTIPLIER = -0.7;
 	final static double LEFT_DEADZONE = 0.15;
@@ -16,6 +20,8 @@ public class Drive extends Component{
 	public Drive(){
 		left = new DualTalon(FRONT_LEFT_MOTOR,REAR_LEFT_MOTOR);
 		right = new DualTalon(FRONT_RIGHT_MOTOR,REAR_RIGHT_MOTOR);
+		clock1 = new Timer();
+		
 		
 		left.setMultiplier(LEFT_MULTIPLIER);
 		right.setMultiplier(RIGHT_MULTIPLIER);
@@ -26,6 +32,30 @@ public class Drive extends Component{
 	}
 	
 	public void autoUpdate(){
+		
+		
+		if(timerValue == false){
+			clock1.start();
+			timerValue = true;
+			
+		}
+		
+		
+		
+		double time = clock1.get();
+		if (time < 5){
+			left.set(.7);
+			right.set(.7);
+			
+			
+		}
+		else {
+			clock1.stop();
+			left.set(0);
+			right.set(0);
+			clock1.reset();
+			
+		}
 		
 	}
 	

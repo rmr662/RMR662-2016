@@ -5,14 +5,11 @@ package org.usfirst.frc.team662.robot;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends SampleRobot {
     RobotDrive myRobot;
     public static Joystick stick;
-    public static Joystick manStick;
+    public static Joystick manipulator;
 
     Component[] parts;
     static final int NUM_PARTS = 6;
@@ -26,7 +23,7 @@ public class Robot extends SampleRobot {
         parts[4] = new BackArm();
         parts[5] = new BallGrabber();
         stick = new Joystick(0);
-        manStick = new Joystick(1);
+        manipulator = new Joystick(1);
     }
     
     public void robotInit() {

@@ -8,4 +8,5 @@ public abstract class Component {
 		public abstract void autoUpdate();
 		public abstract int getControllerIndex();
 		public abstract void setController(Joystick j);
+		public abstract void disabled();
 }

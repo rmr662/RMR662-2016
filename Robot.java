@@ -35,14 +35,24 @@ public class Robot extends SampleRobot {
 
     public void autonomous() {
     	for(int i = 0; parts[i] != null && i < parts.length; i++){
-    		parts[i].autoUpdate();
+    		if(!compDisabled[i]){
+    			parts[i].autoUpdate();
+    		}
+    		else{
+    			parts[i].disabled();
+    		}
     	}
     }
 
     public void operatorControl() {
         while (isOperatorControl() && isEnabled()) {
             for(int i = 0; parts[i] != null && i < parts.length; i++){
-            	parts[i].update();
+            	if(!compDisabled[i]){
+        			parts[i].update();
+        		}
+        		else{
+        			parts[i].disabled();
+        		}
             }
         }
     }

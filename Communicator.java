@@ -15,43 +15,45 @@ public class Communicator implements Runnable{
 	
 	final static String IP = "228.5.6.7";
 	final static int PORT = 6789;
+	final static int SOCK_PORT = 3456;
 	final static String MESSAGE = "RMR 662 rocks client";
 	final static String SHAKE = "RMR 662 rocks server";
+	final static String COM_SHAKE = "all done";
 	
 	public Communicator(){
 		
 	}
 	
 	public void run(){
-		InetAddress server = findIp(IP, PORT, MESSAGE, SHAKE); 
+		findIp(IP, PORT, MESSAGE, SHAKE); 
 		String[] componentNames = new String[Robot.parts.length];
 		try {
-			ServerSocket sSocket = new ServerSocket(PORT);
+			ServerSocket sSocket = new ServerSocket(SOCK_PORT);
 			
 			Socket client = sSocket.accept();
-			boolean socketOpen = false;
-			InputStreamReader inStream = new InputStreamReader(client.getInputStream());
-			BufferedReader messageSender = new BufferedReader(inStream);
+			boolean socketOpen = true;
+			BufferedReader messageSender = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			PrintWriter messageOutput = new PrintWriter(client.getOutputStream());
-			for(Component comp : Robot.parts){
-				messageOutput.println(comp.getClass().getCanonicalName());
+			for(int i = 0; i < componentNames.length; i++){
+				componentNames[i] = Robot.parts[i].getClass().getName();
+				messageOutput.println(componentNames[i]);
 			}
+			messageOutput.println(COM_SHAKE);
 			while(socketOpen){
 				String message = messageSender.readLine();
 				if(message.equals("close")){
 					sSocket.close();
-					inStream.close();
 					messageOutput.close();
 					messageSender.close();
+					socketOpen = false;
 				}
 				else{
 					for(int i = 0; i < componentNames.length; i++){
 						if(componentNames[i].equals(message)){
-							Robot.compDisabled
+							Robot.compDisabled[i] = !Robot.compDisabled[i];
 						}
 					}
 				}
-				
 			}
 			
 		} catch (IOException e) {
@@ -59,8 +61,7 @@ public class Communicator implements Runnable{
 			e.printStackTrace();
 		}
 	}
-	public InetAddress findIp(String ip, int port, String message, String handshake){
-		InetAddress address = null;
+	public void findIp(String ip, int port, String message, String handshake){
 		try {
 			boolean foundServer = false;
 			
@@ -69,15 +70,13 @@ public class Communicator implements Runnable{
 			broadcaster.joinGroup(group);
 			DatagramPacket findServer = new DatagramPacket(message.getBytes(), message.length(), group, port);
 			while(!foundServer){
-				broadcaster.send(findServer);
 				byte[] buf = new byte[1000];
 				DatagramPacket recv = new DatagramPacket(buf, buf.length);
-				String received = new String(buf);
 				broadcaster.receive(recv);
-				address = recv.getAddress();
+				String received = new String(buf);
 				if(received.equals(handshake)){
 					foundServer = true;
-					
+					broadcaster.send(findServer);
 				}
 			}
 			broadcaster.close();
@@ -90,6 +89,5 @@ public class Communicator implements Runnable{
 			e.printStackTrace();
 		}
 		
-		return address;
 	}
 }

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team662.robot;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.CANTalon;
+
 public class BallGrabber extends Component{
 	CANTalon grabbingTalon;
 	final static int MOTORPORT = 1;

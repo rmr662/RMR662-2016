@@ -14,9 +14,9 @@ public class Robot extends SampleRobot {
     Joystick [] sticks;
 
     ComponentLoader cl;
-    Component[] parts;
+    public static Component[] parts;
+    public static boolean[] compDisabled;
     static final int NUM_PARTS = 3;
-
     public Robot() {
 	sticks = new Joystick[2];
 
@@ -28,9 +28,9 @@ public class Robot extends SampleRobot {
     
     public void robotInit() {
         parts = cl.loadComponents();
-	for (int i = 0; parts[i] != null && i < parts.length; i++) {
-	   parts[i].setController(sticks[parts[i].getControllerIndex()]);
-	}   
+		for (int i = 0; parts[i] != null && i < parts.length; i++) {
+		   parts[i].setController(sticks[parts[i].getControllerIndex()]);
+		}   
     }
 
     public void autonomous() {

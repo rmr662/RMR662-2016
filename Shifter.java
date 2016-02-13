@@ -4,19 +4,16 @@ import edu.wpi.first.wpilibj.Solenoid;
 
 public class Shifter extends Component{
 
-	final static int rPortNumber = 0;
-	final static int lPortNumber = 1;
+	final static int portNumber = 5;
 	
 	
-	Solenoid lGearShifter;
-	Solenoid rGearShifter;
+	Solenoid gearShifter;
 	
 	
 	public Shifter (){
 		
-		
-		lGearShifter = new Solenoid(lPortNumber);
-		rGearShifter = new Solenoid(rPortNumber);
+
+		gearShifter = new Solenoid(portNumber);
 		
 		
 	}
@@ -35,8 +32,7 @@ public class Shifter extends Component{
 		
 	}
 	public void shift(boolean gear){
-		lGearShifter.set(gear);
-		rGearShifter.set(gear);
+		gearShifter.set(gear);
 	}
 	
 	public void autoUpdate(){

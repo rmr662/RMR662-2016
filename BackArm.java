@@ -7,7 +7,7 @@ public class BackArm extends Component{
 	
 	boolean clicked;
 	
-	final static int SOL_PORT = 1;
+	final static int SOL_PORT = 4;
 	
 	public BackArm(){
 		clicked = false;

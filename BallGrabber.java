@@ -15,7 +15,7 @@ public class BallGrabber extends Component{
 	
 	public BallGrabber(){
 		grabbingTalon = new Talon(MOTORPORT);
-		buttonOn = new DigitalInput(SWITCHPORT);
+		//buttonOn = new DigitalInput(SWITCHPORT);
 	}
 	public void update(){
 		boolean leftButton;
@@ -31,15 +31,16 @@ public class BallGrabber extends Component{
 			limitHit = false;
 		}*/
 	
-		if(leftButton && !runBefore){
+		if(leftButton){
 			runBefore = true;
 			grabbingTalon.set(SPEED_FORWARD);
 		}
-		else if(rightButton && runBefore){
+		else if(rightButton){
 			runBefore = true;
 			grabbingTalon.set(SPEED_BACKWARD);
-		} else if(runBefore && (!leftButton || !rightButton)){
+		} else if(runBefore){
 			runBefore = false;
+			grabbingTalon.set(0);
 		}
 			
 	}

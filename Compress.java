@@ -2,6 +2,7 @@ package org.usfirst.frc.team662.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Compress extends Component{
 	
@@ -21,14 +22,10 @@ public class Compress extends Component{
 	}
 	public void update(){
 		if(comp.get()){
-			if(compressor.getPressureSwitchValue() && !started){
-				compressor.start();
-				started = true;
-			}
-			else if(!compressor.getPressureSwitchValue() && started){
-				compressor.stop();
-				started = false;
-			}
+			compressor.start();
+		}
+		else{
+			compressor.stop();
 		}
 	}
 	public void autoUpdate(){

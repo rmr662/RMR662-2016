@@ -8,8 +8,8 @@ public class Drive extends Component{
 	Timer clock1;
 	boolean timerValue = false;
 	
-	final static double LEFT_MULTIPLIER = 0.7;
-	final static double RIGHT_MULTIPLIER = -0.7;
+	final static double LEFT_MULTIPLIER = 1;
+	final static double RIGHT_MULTIPLIER = -1;
 	final static double LEFT_DEADZONE = 0.15;
 	final static double RIGHT_DEADZONE = 0.15;
 	final static int FRONT_LEFT_MOTOR = 4;
@@ -69,6 +69,9 @@ public class Drive extends Component{
        double highInput = 1;
        double leftInput = -Robot.stick.getRawAxis(XboxMap.LEFT_JOY_VERT);
        double rightInput = Robot.stick.getRawAxis(XboxMap.RIGHT_JOY_HORIZ);
+       
+       //left.set(0);
+       //right.set(0);
        
        if (rightInput < 0) {
     	   rightInput *= -rightInput;

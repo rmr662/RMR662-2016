@@ -1,6 +1,7 @@
 package org.usfirst.frc.team662.robot;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Shifter extends Component{
 
@@ -21,7 +22,7 @@ public class Shifter extends Component{
 		
 		 boolean rPress = Robot.stick.getRawButton(XboxMap.RB);
 		 boolean lPress = Robot.stick.getRawButton(XboxMap.LB);
-		 
+		 SmartDashboard.putBoolean("Gear", gearShifter.get());
 		 
 		 if (rPress == true){
 			 shift(true); 

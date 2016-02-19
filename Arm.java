@@ -48,7 +48,7 @@ class Arm extends Component {
 	}
 
 	public void autoUpdate() {
-
+		setSolenoids(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward);
 	}
 
 }

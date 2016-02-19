@@ -3,17 +3,19 @@ package org.usfirst.frc.team662.robot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 class Arm extends Component {
-	final static int TOP_PORT_ONE = 1;
-	final static int BOTTOM_PORT_ONE = 2;
-	final static int BOTTOM_PORT_TWO = 3;
-	final static int TOP_PORT_TWO = 4;
+	final static int EXTEND_PORT_TOP = 3;
+	final static int RETRACT_PORT_TOP = 2;
+	final static int EXTEND_PORT_BOTTOM = 6;
+	final static int RETRACT_PORT_BOTTOM = 7;
 	boolean isFirstTime = true;
-	DoubleSolenoid top, bottom;
+	DoubleSolenoid bottomSol;
+	DoubleSolenoid topSol;
 
 	public Arm() {
 
-		bottom = new DoubleSolenoid(1, BOTTOM_PORT_ONE, BOTTOM_PORT_TWO);
-		top = new DoubleSolenoid(1, TOP_PORT_ONE, TOP_PORT_TWO);
+		bottomSol = new DoubleSolenoid(1, EXTEND_PORT_BOTTOM, RETRACT_PORT_BOTTOM);
+
+		topSol = new DoubleSolenoid(1, EXTEND_PORT_TOP, RETRACT_PORT_TOP);
 
 	}
 
@@ -41,9 +43,9 @@ class Arm extends Component {
 
 	}
 
-	private void setSolenoids(DoubleSolenoid.Value bottomValue, DoubleSolenoid.Value topValue) {
-		bottom.set(bottomValue);
-		top.set(topValue);
+	private void setSolenoids(DoubleSolenoid.Value bottom, DoubleSolenoid.Value top) {
+		bottomSol.set(bottom);
+		topSol.set(top);
 		isFirstTime = false;
 	}
 

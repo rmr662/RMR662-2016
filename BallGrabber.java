@@ -15,21 +15,12 @@ public class BallGrabber extends Component{
 	
 	public BallGrabber(){
 		grabbingTalon = new Talon(MOTORPORT);
-		//buttonOn = new DigitalInput(SWITCHPORT);
 	}
 	public void update(){
 		boolean leftButton;
 		boolean rightButton;
 		leftButton = Robot.manipulator.getRawAxis(XboxMap.LEFT_TRIGGER) > .5;
 		rightButton = Robot.manipulator.getRawAxis(XboxMap.RIGHT_TRIGGER) > .5;
-		
-		/*if(buttonOn.get() && limitHit == false){
-			grabbingTalon.set(0);
-			limitHit = true;
-		}
-		if(!buttonOn.get()){
-			limitHit = false;
-		}*/
 	
 		if(leftButton){
 			runBefore = true;

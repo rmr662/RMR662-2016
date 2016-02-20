@@ -12,6 +12,9 @@ public class Drive extends Component{
 	final static double RIGHT_MULTIPLIER = -1;
 	final static double LEFT_DEADZONE = 0.20;
 	final static double RIGHT_DEADZONE = 0.20;
+	final static double AUTO_LEFT_SPEED = .15;
+	final static double AUTO_RIGHT_SPEED = .15;
+	final static double AUTO_TIMER = 5;
 	final static int FRONT_LEFT_MOTOR = 4;
 	final static int REAR_LEFT_MOTOR = 6;
 	final static int FRONT_RIGHT_MOTOR = 3;
@@ -43,9 +46,9 @@ public class Drive extends Component{
 		
 		
 		double time = clock1.get();
-		if (time < 5){
-			left.set(.7);
-			right.set(.7);
+		if (time < AUTO_TIMER){
+			left.set(AUTO_LEFT_SPEED);
+			right.set(AUTO_RIGHT_SPEED);
 			
 			
 		}
@@ -130,6 +133,10 @@ public class Drive extends Component{
 	    	   }
 	       }
 		return outputPower;
+	}
+	public void disable(){
+		left.set(0);
+		right.set(0);
 	}
 	
 }

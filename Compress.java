@@ -21,7 +21,7 @@ public class Compress extends Component {
 	}
 
 	public void update() {
-		if (comp.get()) {
+		if (!comp.get()) {
 			compressor.start();
 		} else {
 			compressor.stop();
@@ -30,5 +30,11 @@ public class Compress extends Component {
 
 	public void autoUpdate() {
 
+	}
+
+	@Override
+	public void disable() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -17,6 +17,9 @@ public class PressureMeter extends Component {
 		//gets the compressor value from the analog channel
 		compressorValue = compressorValueFinder.getVoltage();
 		compressorAccumulatorValue = compressorValueFinder.getAccumulatorValue();
+		
+		int psi = (int)((compressorValue / 5.0) * 200);
+		SmartDashboard.putNumber("Hopeful PSI", psi);
 
 		//puts the value of the compressor to the dash board
 		SmartDashboard.putNumber("Voltage", compressorValue);
@@ -29,5 +32,11 @@ public class PressureMeter extends Component {
 	@Override
 	public void autoUpdate() {
 
+	}
+
+	@Override
+	public void disable() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -3,8 +3,8 @@ package org.usfirst.frc.team662.robot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 class Arm extends Component {
-	final static int EXTEND_PORT_TOP = 3;
-	final static int RETRACT_PORT_TOP = 2;
+	final static int EXTEND_PORT_TOP = 2;
+	final static int RETRACT_PORT_TOP = 3;
 	final static int EXTEND_PORT_BOTTOM = 6;
 	final static int RETRACT_PORT_BOTTOM = 7;
 	boolean isFirstTime = true;
@@ -50,6 +50,12 @@ class Arm extends Component {
 	}
 
 	public void autoUpdate() {
+		setSolenoids(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward);
+	}
+
+	@Override
+	public void disable() {
+		// TODO Auto-generated method stub
 		setSolenoids(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward);
 	}
 

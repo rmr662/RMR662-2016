@@ -35,4 +35,10 @@ public class BackArm extends Component{
 	public void autoUpdate(){
 		
 	}
+
+	@Override
+	public void disable() {
+		// TODO Auto-generated method stub
+		
+	}
 }

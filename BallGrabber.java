@@ -9,6 +9,7 @@ public class BallGrabber extends Component{
 	DigitalInput buttonOn;
 	final static double SPEED_FORWARD = 1;
 	final static double SPEED_BACKWARD = -1;
+	final static double DEAD_ZONE = .3;
 	boolean clockwise = false;
 	boolean runBefore = false;
 	boolean limitHit = false;
@@ -21,8 +22,10 @@ public class BallGrabber extends Component{
 		boolean rightButton;
 		leftButton = Robot.manipulator.getRawAxis(XboxMap.LEFT_TRIGGER) > .5;
 		rightButton = Robot.manipulator.getRawAxis(XboxMap.RIGHT_TRIGGER) > .5;
+		
+		double ballPick = Robot.manipulator.getRawAxis(XboxMap.LEFT_JOY_VERT);
 	
-		if(leftButton){
+		/*if(leftButton){
 			runBefore = true;
 			grabbingTalon.set(SPEED_FORWARD);
 		}
@@ -33,6 +36,8 @@ public class BallGrabber extends Component{
 			runBefore = false;
 			grabbingTalon.set(0);
 		}
+		*/
+		grabbingTalon.set(Math.abs(ballPick) > DEAD_ZONE ? ballPick : 0);
 			
 	}
 	public void autoUpdate(){

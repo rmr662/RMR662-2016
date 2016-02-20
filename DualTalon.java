@@ -106,4 +106,10 @@ public class DualTalon implements SpeedController {
 	public void disable() {
 		leftSpeedMultiplier = rightSpeedMultiplier = 0.0;
 	}
+
+	@Override
+	public void stopMotor() {
+		// TODO Auto-generated method stub
+		set(0);
+	}
 }

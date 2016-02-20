@@ -35,21 +35,31 @@ public class Robot extends SampleRobot {
 	}
 
 	public void autonomous() {
-		if (auto.get()) {
+		/*if (!auto.get()) {
 			for (int i = 0; i < parts.length; i++) {
 				parts[i].autoUpdate();
 			}
-		}
+		}*/
 	}
 
 	public void operatorControl() {
 		while (isOperatorControl() && isEnabled()) {
 			for (int i = 0; i < parts.length; i++) {
-				parts[i].update();
+				try{
+					parts[i].update();
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
 
 	public void test() {
+	}
+	public void disabled(){
+		for(int i = 0 ; i < parts.length; i++){
+			parts[i].disable();
+		}
 	}
 }

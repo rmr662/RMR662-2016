@@ -1,20 +1,27 @@
 package org.usfirst.frc.team662.robot;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
 public class Drive extends Component{
 	RobotDrive driver; 
 	DualTalon left;
 	DualTalon right;
+	ADXRS450_Gyro gyro;
+	double firstRot;
 	Timer clock1;
 	boolean timerValue = false;
 	
-	final static double LEFT_MULTIPLIER = 1;
-	final static double RIGHT_MULTIPLIER = -1;
+	final static double LEFT_MULTIPLIER = .3;
+	final static double RIGHT_MULTIPLIER = -.3;
 	final static double LEFT_DEADZONE = 0.20;
 	final static double RIGHT_DEADZONE = 0.20;
 	final static double AUTO_LEFT_SPEED = .15;
 	final static double AUTO_RIGHT_SPEED = .15;
+	final static double LOW_ANGLE = -10;
+	final static double HIGH_ANGLE = 10;
 	final static double AUTO_TIMER = 5;
+	final static double HIGH_MULTIPLIER = 1.05;
+	final static double LOW_MULTIPLIER = .95;
 	final static int FRONT_LEFT_MOTOR = 4;
 	final static int REAR_LEFT_MOTOR = 6;
 	final static int FRONT_RIGHT_MOTOR = 3;
@@ -28,8 +35,8 @@ public class Drive extends Component{
 		
 		left.setMultiplier(LEFT_MULTIPLIER);
 		right.setMultiplier(RIGHT_MULTIPLIER);
-				
-		//driver = new RobotDrive(left,right);
+		
+		gyro = new ADXRS450_Gyro();
 		
 		
 	}
@@ -40,17 +47,22 @@ public class Drive extends Component{
 		if(timerValue == false){
 			clock1.start();
 			timerValue = true;
-			
+			firstRot = gyro.getAngle();
 		}
 		
 		
 		
 		double time = clock1.get();
 		if (time < AUTO_TIMER){
-			left.set(AUTO_LEFT_SPEED);
-			right.set(AUTO_RIGHT_SPEED);
+			double leftSpeed = AUTO_LEFT_SPEED;
+			double rightSpeed = AUTO_RIGHT_SPEED;	
 			
-			
+			//Check gyro for speed
+			//double[] tSpeed = gyroAngle(firstRot);
+			//leftSpeed = tSpeed[0];
+			//rightSpeed = tSpeed[1];
+			left.set(leftSpeed);
+			right.set(rightSpeed);
 		}
 		else {
 			clock1.stop();
@@ -61,7 +73,28 @@ public class Drive extends Component{
 		}
 		
 	}
-	
+	private double[] gyroAngle(double initialAngle){
+		double gyroSpeed[] = new double[2];
+		double changeInAngle = gyro.getAngle() - initialAngle;
+		if(changeInAngle < LOW_ANGLE){
+			double leftMod = AUTO_LEFT_SPEED * HIGH_MULTIPLIER < 1 ? AUTO_LEFT_SPEED * HIGH_MULTIPLIER : 1 ;
+			double rightMod = AUTO_LEFT_SPEED * HIGH_MULTIPLIER > 1 ? AUTO_RIGHT_SPEED *LOW_MULTIPLIER - (AUTO_LEFT_SPEED * HIGH_MULTIPLIER - 1) : AUTO_RIGHT_SPEED *LOW_MULTIPLIER;
+			gyroSpeed[0] = leftMod;
+			gyroSpeed[1] = rightMod;
+		}
+		else if(changeInAngle > HIGH_ANGLE){
+			double rightMod = AUTO_RIGHT_SPEED * HIGH_MULTIPLIER < 1 ? AUTO_RIGHT_SPEED * HIGH_MULTIPLIER : 1 ;
+			double leftMod = AUTO_RIGHT_SPEED * HIGH_MULTIPLIER > 1 ? AUTO_LEFT_SPEED * LOW_MULTIPLIER - (AUTO_RIGHT_SPEED * HIGH_MULTIPLIER - 1) : AUTO_LEFT_SPEED *LOW_MULTIPLIER;
+			gyroSpeed[0] = leftMod;
+			gyroSpeed[1] = rightMod;
+		}
+		else{
+			gyroSpeed[0] = AUTO_LEFT_SPEED;
+			gyroSpeed[1] = AUTO_RIGHT_SPEED;
+			return gyroSpeed;
+		}
+		return gyroSpeed;
+	}
 	public void update(){
 		//experimental drive train code by James S.
     	

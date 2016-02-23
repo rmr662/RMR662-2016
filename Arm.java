@@ -56,7 +56,7 @@ class Arm extends Component {
 	@Override
 	public void disable() {
 		// TODO Auto-generated method stub
-		setSolenoids(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward);
+		setSolenoids(DoubleSolenoid.Value.kReverse, DoubleSolenoid.Value.kReverse);
 	}
 
 }

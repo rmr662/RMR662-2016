@@ -13,11 +13,13 @@ public class Robot extends SampleRobot {
 	DigitalInput auto;
 
 	Component[] parts;
-	static final int NUM_PARTS = 6;
+	static final int NUM_PARTS = 7;
 
 	static final int AUTO_PORT = 1;
 
 	public Robot() {
+		stick = new Joystick(0);
+		manipulator = new Joystick(1);
 		parts = new Component[NUM_PARTS];
 		parts[0] = new Compress();
 		parts[1] = new Drive();
@@ -25,8 +27,8 @@ public class Robot extends SampleRobot {
 		parts[3] = new Arm();
 		parts[4] = new BackArm();
 		parts[5] = new BallGrabber();
-		stick = new Joystick(0);
-		manipulator = new Joystick(1);
+		parts[6] = new PressureMeter();
+		
 		auto = new DigitalInput(AUTO_PORT);
 	}
 
@@ -35,11 +37,12 @@ public class Robot extends SampleRobot {
 	}
 
 	public void autonomous() {
-		/*if (!auto.get()) {
+		//Add loop
+		if (!auto.get()) {
 			for (int i = 0; i < parts.length; i++) {
 				parts[i].autoUpdate();
 			}
-		}*/
+		}
 	}
 
 	public void operatorControl() {

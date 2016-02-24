@@ -2,6 +2,7 @@ package org.usfirst.frc.team662.robot;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Drive extends Component{
 	RobotDrive driver; 
 	DualTalon left;
@@ -15,8 +16,8 @@ public class Drive extends Component{
 	final static double RIGHT_MULTIPLIER = -.3;
 	final static double LEFT_DEADZONE = 0.20;
 	final static double RIGHT_DEADZONE = 0.20;
-	final static double AUTO_LEFT_SPEED = .15;
-	final static double AUTO_RIGHT_SPEED = .15;
+	final static double AUTO_LEFT_SPEED = .35;
+	final static double AUTO_RIGHT_SPEED = .35;
 	final static double LOW_ANGLE = -10;
 	final static double HIGH_ANGLE = 10;
 	final static double AUTO_TIMER = 5;
@@ -42,8 +43,6 @@ public class Drive extends Component{
 	}
 	
 	public void autoUpdate(){
-		
-		
 		if(timerValue == false){
 			clock1.start();
 			timerValue = true;
@@ -58,9 +57,9 @@ public class Drive extends Component{
 			double rightSpeed = AUTO_RIGHT_SPEED;	
 			
 			//Check gyro for speed
-			//double[] tSpeed = gyroAngle(firstRot);
-			//leftSpeed = tSpeed[0];
-			//rightSpeed = tSpeed[1];
+			double[] tSpeed = gyroAngle(firstRot);
+			leftSpeed = tSpeed[0];
+			rightSpeed = tSpeed[1];
 			left.set(leftSpeed);
 			right.set(rightSpeed);
 		}
@@ -68,14 +67,13 @@ public class Drive extends Component{
 			clock1.stop();
 			left.set(0);
 			right.set(0);
-			clock1.reset();
-			
 		}
 		
 	}
 	private double[] gyroAngle(double initialAngle){
 		double gyroSpeed[] = new double[2];
 		double changeInAngle = gyro.getAngle() - initialAngle;
+		SmartDashboard.putNumber("Gyro Value", changeInAngle);
 		if(changeInAngle < LOW_ANGLE){
 			double leftMod = AUTO_LEFT_SPEED * HIGH_MULTIPLIER < 1 ? AUTO_LEFT_SPEED * HIGH_MULTIPLIER : 1 ;
 			double rightMod = AUTO_LEFT_SPEED * HIGH_MULTIPLIER > 1 ? AUTO_RIGHT_SPEED *LOW_MULTIPLIER - (AUTO_LEFT_SPEED * HIGH_MULTIPLIER - 1) : AUTO_RIGHT_SPEED *LOW_MULTIPLIER;
@@ -170,6 +168,8 @@ public class Drive extends Component{
 	public void disable(){
 		left.set(0);
 		right.set(0);
+		timerValue = false;
+		clock1.reset();
 	}
 	
 }

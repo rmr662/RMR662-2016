@@ -15,19 +15,16 @@ public class PressureMeter extends Component {
 	@Override
 	public void update() {
 		//gets the compressor value from the analog channel
-		compressorValue = compressorValueFinder.getAverageVoltage();
+		compressorValue = compressorValueFinder.getVoltage();
 		compressorAccumulatorValue = compressorValueFinder.getAccumulatorValue();
 		
 		int psi = (int)((compressorValue / 5.0) * 200);
 		SmartDashboard.putNumber("Hopeful PSI", psi );
-		SmartDashboard.putNumber("Average value", compressorValueFinder.getAverageValue());
 
 		//puts the value of the compressor to the dash board
-		SmartDashboard.putNumber("Voltage", compressorValue);
 
 		//puts the value of the Accumulator to the dash board
 		// TODO find out the difference between accumulator values and voltage values and which one is better.
-		SmartDashboard.putNumber("Accumulator Value", compressorAccumulatorValue);
 	}
 
 	@Override

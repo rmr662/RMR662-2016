@@ -29,12 +29,16 @@ public class Compress extends Component {
 	}
 
 	public void autoUpdate() {
-
+		if (!comp.get()) {
+			compressor.start();
+		} else {
+			compressor.stop();
+		}
 	}
 
 	@Override
 	public void disable() {
-		// TODO Auto-generated method stub
+		compressor.stop();
 		
 	}
 }

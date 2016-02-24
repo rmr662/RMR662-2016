@@ -38,9 +38,11 @@ public class Robot extends SampleRobot {
 
 	public void autonomous() {
 		//Add loop
-		if (!auto.get()) {
-			for (int i = 0; i < parts.length; i++) {
-				parts[i].autoUpdate();
+		while(isAutonomous()){
+			if (!auto.get()) {
+				for (int i = 0; i < parts.length; i++) {
+					parts[i].autoUpdate();
+				}
 			}
 		}
 	}

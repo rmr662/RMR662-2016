@@ -11,35 +11,35 @@ class Arm extends Component {
 	DoubleSolenoid bottomSol;
 	DoubleSolenoid topSol;
 
+	boolean up, half, down;
+	
 	public Arm() {
 
 		bottomSol = new DoubleSolenoid(1, EXTEND_PORT_BOTTOM, RETRACT_PORT_BOTTOM);
 
 		topSol = new DoubleSolenoid(1, EXTEND_PORT_TOP, RETRACT_PORT_TOP);
-
+		up = true;
+		half = down = false;
 	}
 
 	public void update() {
-		boolean Up = Robot.manipulator.getRawButton(XboxMap.Y);
-		boolean Half = Robot.manipulator.getRawButton(XboxMap.X);
-		boolean Down = Robot.manipulator.getRawButton(XboxMap.A);
 
-		if (Up == true && isFirstTime == true) {
+		if (up == true && isFirstTime == true) {
 			setSolenoids(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward);
-
 		}
-
-		else if (Half == true && isFirstTime == true) {
+		else if (half == true && isFirstTime == true) {
 			setSolenoids(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kReverse);
 		}
-
-		else if (Down == true && isFirstTime == true) {
+		else if (down == true && isFirstTime == true) {
 			setSolenoids(DoubleSolenoid.Value.kReverse, DoubleSolenoid.Value.kReverse);
 		}
-
-		else if (!Down && !Up && !Half && !isFirstTime) {
+		else if (!down && !up && !half && !isFirstTime) {
 			isFirstTime = true;
 		}
+		
+		up = Robot.manipulator.getRawButton(XboxMap.Y);
+		half = Robot.manipulator.getRawButton(XboxMap.X);
+		down = Robot.manipulator.getRawButton(XboxMap.A);
 
 	}
 
@@ -57,6 +57,9 @@ class Arm extends Component {
 	public void disable() {
 		// TODO Auto-generated method stub
 		setSolenoids(DoubleSolenoid.Value.kReverse, DoubleSolenoid.Value.kReverse);
+		up = true;
+		down = half = false;
+		isFirstTime = true;
 	}
 
 }

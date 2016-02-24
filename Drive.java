@@ -12,15 +12,15 @@ public class Drive extends Component{
 	Timer clock1;
 	boolean timerValue = false;
 	
-	final static double LEFT_MULTIPLIER = .3;
-	final static double RIGHT_MULTIPLIER = -.3;
+	final static double LEFT_MULTIPLIER = .85;
+	final static double RIGHT_MULTIPLIER = -.85;
 	final static double LEFT_DEADZONE = 0.20;
 	final static double RIGHT_DEADZONE = 0.20;
-	final static double AUTO_LEFT_SPEED = .35;
-	final static double AUTO_RIGHT_SPEED = .35;
+	final static double AUTO_LEFT_SPEED = .6;
+	final static double AUTO_RIGHT_SPEED = .6;
 	final static double LOW_ANGLE = -10;
 	final static double HIGH_ANGLE = 10;
-	final static double AUTO_TIMER = 5;
+	final static double AUTO_TIMER = 3;
 	final static double HIGH_MULTIPLIER = 1.05;
 	final static double LOW_MULTIPLIER = .95;
 	final static int FRONT_LEFT_MOTOR = 4;
@@ -57,9 +57,9 @@ public class Drive extends Component{
 			double rightSpeed = AUTO_RIGHT_SPEED;	
 			
 			//Check gyro for speed
-			double[] tSpeed = gyroAngle(firstRot);
+			/*double[] tSpeed = gyroAngle(firstRot);
 			leftSpeed = tSpeed[0];
-			rightSpeed = tSpeed[1];
+			rightSpeed = tSpeed[1];*/
 			left.set(leftSpeed);
 			right.set(rightSpeed);
 		}
@@ -95,7 +95,7 @@ public class Drive extends Component{
 	}
 	public void update(){
 		//experimental drive train code by James S.
-    	
+    	SmartDashboard.putNumber("The teleGyro is ", gyro.getAngle());
            
        //set variables to defaults
        double rightMotorPower = 0;

@@ -38,7 +38,7 @@ public class BackArm extends Component{
 
 	@Override
 	public void disable() {
-		// TODO Auto-generated method stub
+		backArm.set(false);
 		
 	}
 }

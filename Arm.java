@@ -18,8 +18,8 @@ class Arm extends Component {
 		bottomSol = new DoubleSolenoid(1, EXTEND_PORT_BOTTOM, RETRACT_PORT_BOTTOM);
 
 		topSol = new DoubleSolenoid(1, EXTEND_PORT_TOP, RETRACT_PORT_TOP);
-		up = true;
-		half = down = false;
+		half = true;
+		up = down = false;
 	}
 
 	public void update() {
@@ -51,14 +51,16 @@ class Arm extends Component {
 
 	public void autoUpdate() {
 		setSolenoids(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward);
+		up = true;
+		down = half = false;
 	}
 
 	@Override
 	public void disable() {
 		// TODO Auto-generated method stub
 		setSolenoids(DoubleSolenoid.Value.kReverse, DoubleSolenoid.Value.kReverse);
-		up = true;
-		down = half = false;
+		half = true;
+		down = up = false;
 		isFirstTime = true;
 	}
 

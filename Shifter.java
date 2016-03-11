@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Shifter extends Component{
 
+	final static boolean LOW = true;
+	final static boolean HIGH = false;
 	final static int portNumber = 5;
 	Solenoid gearShifter;
 
@@ -17,10 +19,10 @@ public class Shifter extends Component{
 		 boolean lPress = Robot.stick.getRawButton(XboxMap.LB);
 		 
 		 if (rPress == true){
-			 shift(true); 
+			 shift(HIGH); 
 		 }
 		 else if(lPress == true){
-			shift(false);
+			shift(LOW);
 		 }
 	}
 	public void shift(boolean gear){
@@ -28,11 +30,10 @@ public class Shifter extends Component{
 	}
 	
 	public void autoUpdate(){
-		
+		gearShifter.set(LOW);
 	}
 	@Override
 	public void disable() {
-		// TODO Auto-generated method stub
-		
+		gearShifter.set(LOW);
 	}
 }

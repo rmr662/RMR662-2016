@@ -22,7 +22,7 @@ public class BallGrabber extends Component{
 		
 		double ballPick = Robot.manipulator.getRawAxis(XboxMap.LEFT_JOY_VERT);
 	
-		SmartDashboard.putBoolean("Limit Switch", buttonOn.get());
+		SmartDashboard.putBoolean("Limit Switch", !buttonOn.get());
 		if(!buttonOn.get() && ballPick > 0 && !Robot.manipulator.getRawButton(XboxMap.B)){
 			ballPick = 0;
 		}

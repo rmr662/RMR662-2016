@@ -13,7 +13,7 @@ public class Robot extends SampleRobot {
 	DigitalInput auto;
 
 	Component[] parts;
-	static final int NUM_PARTS = 7;
+	static final int NUM_PARTS = 8;
 
 	static final int AUTO_PORT = 1;
 
@@ -28,6 +28,7 @@ public class Robot extends SampleRobot {
 		parts[4] = new BackArm();
 		parts[5] = new BallGrabber();
 		parts[6] = new PressureMeter();
+		parts[7] = new Climber();
 		
 		auto = new DigitalInput(AUTO_PORT);
 	}

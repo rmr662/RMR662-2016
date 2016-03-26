@@ -30,10 +30,10 @@ public class Shifter extends Component{
 	}
 	
 	public void autoUpdate(){
-		gearShifter.set(LOW);
+		//gearShifter.set(LOW);
 	}
 	@Override
 	public void disable() {
-		gearShifter.set(LOW);
+		//gearShifter.set(LOW);
 	}
 }

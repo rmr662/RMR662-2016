@@ -12,12 +12,12 @@ public class Drive extends Component{
 	Timer clock1;
 	boolean timerValue = false;
 	
-	final static double LEFT_MULTIPLIER = .85;
-	final static double RIGHT_MULTIPLIER = -.85;
+	final static double LEFT_MULTIPLIER = 1;
+	final static double RIGHT_MULTIPLIER = -1;
 	final static double LEFT_DEADZONE = 0.20;
 	final static double RIGHT_DEADZONE = 0.20;
-	final static double AUTO_LEFT_SPEED = .8;
-	final static double AUTO_RIGHT_SPEED = .8;
+	final static double AUTO_LEFT_SPEED = .73;
+	final static double AUTO_RIGHT_SPEED = .73;
 	final static double LOW_ANGLE = -10;
 	final static double HIGH_ANGLE = 10;
 	final static double AUTO_TIMER = 4;

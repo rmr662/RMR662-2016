@@ -101,8 +101,8 @@ public class Drive extends Component{
        double rightMotorPower = 0;
        double leftMotorPower = 0;
        double highInput = 1;
-       double leftInput = -Robot.stick.getRawAxis(XboxMap.LEFT_JOY_VERT);
-       double rightInput = Robot.stick.getRawAxis(XboxMap.RIGHT_JOY_HORIZ);
+       double leftInput = -Robot.manipulator.getRawAxis(XboxMap.LEFT_JOY_VERT);
+       double rightInput = Robot.manipulator.getRawAxis(XboxMap.RIGHT_JOY_HORIZ);
        
        //left.set(0);
        //right.set(0);

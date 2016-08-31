@@ -15,8 +15,8 @@ public class Shifter extends Component{
 	}
 	public void update(){
 		
-		 boolean rPress = Robot.stick.getRawButton(XboxMap.R_ANALOG);
-		 boolean lPress = Robot.stick.getRawButton(XboxMap.L_ANALOG);
+		 boolean rPress = Robot.manipulator.getRawButton(XboxMap.R_ANALOG);
+		 boolean lPress = Robot.manipulator.getRawButton(XboxMap.L_ANALOG);
 		 
 		 if (rPress == true){
 			 shift(HIGH); 

@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.SampleRobot;
 public class Robot extends SampleRobot {
 
 	RobotDrive myRobot;
-	public static Joystick stick;
+	//public static Joystick stick;
 	public static Joystick manipulator;
 	DigitalInput auto;
 
@@ -18,7 +18,7 @@ public class Robot extends SampleRobot {
 	static final int AUTO_PORT = 1;
 
 	public Robot() {
-		stick = new Joystick(0);
+		//stick = new Joystick(0);
 		manipulator = new Joystick(1);
 		parts = new Component[NUM_PARTS];
 		parts[0] = new Compress();

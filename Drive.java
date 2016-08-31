@@ -16,11 +16,11 @@ public class Drive extends Component{
 	final static double RIGHT_MULTIPLIER = -1;
 	final static double LEFT_DEADZONE = 0.20;
 	final static double RIGHT_DEADZONE = 0.20;
-	final static double AUTO_LEFT_SPEED = .8;
-	final static double AUTO_RIGHT_SPEED = .8;
+	final static double AUTO_LEFT_SPEED = .9;
+	final static double AUTO_RIGHT_SPEED = .9;
 	final static double LOW_ANGLE = -10;
 	final static double HIGH_ANGLE = 10;
-	final static double AUTO_TIMER = 3.5;
+	final static double AUTO_TIMER = 3;
 	final static double HIGH_MULTIPLIER = 1.05;
 	final static double LOW_MULTIPLIER = .95;
 	final static int FRONT_LEFT_MOTOR = 4;
